@@ -134,6 +134,18 @@ menu_block() {
   "gdrive.logs": {"icon":"󰧮","label":"Log","action":"$term '$BIN logs'"},
   "gdrive.repair": {"icon":"󰁨","label":"Repair","action":"$BIN repair --notify"},
 EOF
+  # Extension rows always follow the default ones, so keep System last by
+  # hiding the default row and re-adding it as a link after Google Drive.
+  # The hidden id still opens via `omarchy menu summon system`.
+  [[ ${MENU_SYSTEM_LAST:-false} == true ]] || return 0
+  local sys_icon
+  sys_icon="$(grep -o '"system": *{"icon":"[^"]*"' "${OMARCHY_PATH:-/usr/share/omarchy}/default/omarchy/omarchy-menu.jsonc" 2>/dev/null |
+    sed 's/.*"icon":"//; s/"$//')"
+  [[ -n $sys_icon ]] || return 0
+  cat <<EOF
+  "system": {"when":"false"},
+  "gdrive-system": {"icon":"$sys_icon","label":"System","target":"system"},
+EOF
 }
 
 install_menu() {

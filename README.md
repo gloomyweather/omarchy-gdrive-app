@@ -59,6 +59,8 @@ good to know:
 - without network, folders and already opened files still work. new changes upload later.
   need files that were never opened? right-click a folder → **make available offline**.
 - after `omarchy refresh ...` the hotkey, menu or bar icon may be gone: run `omarchy-gdrive repair`.
+- google drive sits below system in the omarchy menu. to keep system last, set
+  `MENU_SYSTEM_LAST=true` in settings and run `omarchy-gdrive repair`.
 
 run `omarchy-gdrive help` for all commands. problems? see [troubleshooting](TROUBLESHOOTING.md).
 

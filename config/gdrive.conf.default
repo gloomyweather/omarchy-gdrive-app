@@ -14,6 +14,11 @@ LINK_DIR="$HOME/GoogleDrive"
 # After a change run: omarchy-gdrive repair
 HOTKEY="SUPER + CTRL + G"
 
+# Omarchy lists Google Drive below System in its menu. true: hide the default
+# System row and show it again after Google Drive, so System stays last.
+# After a change run: omarchy-gdrive repair
+MENU_SYSTEM_LAST=false
+
 # --- Cache (each mount has its own) -----------------------------------------
 # How much disk space one mount's cache may use. A soft limit: open files and
 # files that are not uploaded yet are never evicted.

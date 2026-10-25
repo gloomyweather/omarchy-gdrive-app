@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>omarchy-gdrive</title>
-<meta name="description" content="Google Drive as a normal folder on Omarchy, built on rclone.">
+<meta name="description" content="google drive as a normal folder on omarchy, built on rclone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
@@ -18,37 +18,37 @@
 </header>
 
 <h1>omarchy-gdrive</h1>
-<p class="lead">Google Drive as a normal folder on Omarchy.</p>
+<p class="lead">google drive as a normal folder on omarchy.</p>
 
-<p>Open, edit and save Drive files from Files, the terminal or any app. It runs
-only on your computer, built on <a href="https://rclone.org/">rclone</a>. There is
-no server and no account other than your own Google one.</p>
+<p>open, edit and save drive files from files, the terminal or any app. it runs
+only on your computer, built on <a href="https://rclone.org/">rclone</a>. there is
+no server and no account other than your own google one.</p>
 
 <ul>
-  <li>bookmarks in Files for My Drive, Shared with me and shared drives</li>
-  <li>right-click: open in Google Drive, copy link, make available offline</li>
-  <li>a Drive icon in the bar: connected, uploading, offline, error</li>
-  <li>Omarchy menu entry and the <code>Super + Ctrl + G</code> hotkey</li>
+  <li>bookmarks in files for my drive, shared with me and shared drives</li>
+  <li>right-click: open in google drive, copy link, make available offline</li>
+  <li>a drive icon in the bar: connected, uploading, offline, error</li>
+  <li>omarchy menu entry and the <code>super + ctrl + g</code> hotkey</li>
   <li>connects at login, waits for the network, finishes uploads at shutdown</li>
 </ul>
 
-<h2><span>01</span>Install</h2>
+<h2><span>01</span>install</h2>
 <pre>git clone https://github.com/gloomyweather/omarchy-gdrive-app.git ~/.local/src/omarchy-gdrive
 ~/.local/src/omarchy-gdrive/install.sh
 nautilus -q</pre>
 
-<h2><span>02</span>Create your Google key</h2>
-<p>About ten minutes, once. Follow the
+<h2><span>02</span>create your google key</h2>
+<p>about ten minutes, once. follow the
 <a href="https://github.com/gloomyweather/omarchy-gdrive-app/blob/main/OAUTH.md">step-by-step guide</a>.
-You end up with a client ID and a client secret.</p>
+you end up with a client id and a client secret.</p>
 
-<h2><span>03</span>Connect</h2>
+<h2><span>03</span>connect</h2>
 <pre>omarchy-gdrive setup</pre>
-<p>Paste the client ID and the secret, sign in to Google, pick your drives.
-Your Drive is now in the Files sidebar and in <code>~/GoogleDrive</code>.</p>
+<p>paste the client id and the secret, sign in to google, pick your drives.
+your drive is now in the files sidebar and in <code>~/GoogleDrive</code>.</p>
 
 <footer>
-  <span>MIT license</span>
+  <span>mit license</span>
   <a href="https://github.com/gloomyweather/omarchy-gdrive-app/blob/main/README.md">readme</a>
 </footer>
 </main>

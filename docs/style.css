@@ -20,7 +20,7 @@ header { display: flex; justify-content: space-between; gap: 16px; padding-botto
 header a { text-decoration: none; }
 header nav a { margin-left: 18px; }
 header nav a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
-h1 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin: 0 0 6px; }
+h1 { font-size: 14px; font-weight: 700; margin: 0 0 6px; }
 h2 { font-size: 14px; font-weight: 700; margin: 48px 0 8px; }
 h2 span { color: var(--faint); font-weight: 400; margin-right: 12px; }
 p, li { margin: 0 0 14px; }

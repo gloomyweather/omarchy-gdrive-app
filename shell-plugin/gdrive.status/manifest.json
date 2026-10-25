@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "gdrive.status",
+  "name": "Google Drive",
+  "version": "1.0.0",
+  "author": "omarchy-gdrive contributors",
+  "license": "MIT",
+  "description": "Google Drive (rclone) status: connected, uploading, offline, error.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "Google Drive",
+    "description": "Google Drive status. Click opens Drive in Files, right click opens the Google Drive menu.",
+    "category": "Files",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

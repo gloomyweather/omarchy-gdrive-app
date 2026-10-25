@@ -1,0 +1,90 @@
+#!/bin/bash
+# Google Drive for Omarchy: rclone mounts with Nautilus, bar and menu integration.
+
+set -euo pipefail
+
+SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+LIB="$(dirname "$SELF")/../lib"
+# shellcheck source=SCRIPTDIR/../lib/common.sh
+source "$LIB/common.sh"
+# shellcheck source=SCRIPTDIR/../lib/service.sh
+source "$LIB/service.sh"
+# shellcheck source=SCRIPTDIR/../lib/setup.sh
+source "$LIB/setup.sh"
+# shellcheck source=SCRIPTDIR/../lib/integrate.sh
+source "$LIB/integrate.sh"
+# shellcheck source=SCRIPTDIR/../lib/files.sh
+source "$LIB/files.sh"
+# shellcheck source=SCRIPTDIR/../lib/offline.sh
+source "$LIB/offline.sh"
+
+usage() {
+  cat <<EOF
+Google Drive for Omarchy
+
+  omarchy-gdrive setup            sign in to Google and choose drives
+  omarchy-gdrive setup --mounts   choose drives again (e.g. a new shared drive)
+  omarchy-gdrive open             open Google Drive in Files
+  omarchy-gdrive connect          connect (and connect at every login)
+  omarchy-gdrive disconnect       disconnect (and stay disconnected)
+  omarchy-gdrive restart          reconnect, e.g. after editing the settings
+  omarchy-gdrive status           what is connected, uploads, errors
+  omarchy-gdrive reconnect        sign in to Google again (expired or revoked)
+  omarchy-gdrive logs [N]         last N log lines
+  omarchy-gdrive link PATH...     copy the Google Drive link of a file
+  omarchy-gdrive web PATH...      open a file on drive.google.com
+  omarchy-gdrive offline add|remove|sync [--force]|resync|list   offline folders
+  omarchy-gdrive rclone ...       rclone with this encrypted config
+  omarchy-gdrive repair           restore hotkey, menu and bar after omarchy refresh
+  omarchy-gdrive install          install the integration (install.sh runs this)
+  omarchy-gdrive uninstall [--purge-config] [--purge-cache]
+
+Settings: $CONF_FILE
+EOF
+}
+
+cmd="${1:-help}"
+shift || true
+case "$cmd" in
+  setup) cmd_setup "$@" ;;
+  reconnect) cmd_reconnect "$@" ;;
+  open) cmd_open "$@" ;;
+  connect) cmd_connect ;;
+  disconnect) cmd_disconnect ;;
+  restart) cmd_restart ;;
+  status) cmd_status "$@" ;;
+  logs) cmd_logs "$@" ;;
+  link) cmd_link "$@" ;;
+  web) cmd_web "$@" ;;
+  offline) cmd_offline "$@" ;;
+  rclone)
+    load_config
+    rc_clone "$@"
+    ;;
+  install | repair) cmd_install "$@" ;;
+  uninstall) cmd_uninstall "$@" ;;
+  # Internal: systemd units, menu conditions, hooks.
+  _prestart) cmd__prestart "$@" ;;
+  _mount) cmd__mount "$@" ;;
+  _started) cmd__started "$@" ;;
+  _stop) cmd__stop "$@" ;;
+  _poststop) cmd__poststop "$@" ;;
+  _failed) cmd__failed "$@" ;;
+  _check) cmd__check ;;
+  _notify-auth) cmd__notify-auth "$@" ;;
+  _offline-sync) cmd__offline-sync ;;
+  _offline-locked)
+    load_config
+    cmd__offline-locked
+    ;;
+  _any-active)
+    load_config
+    any_active
+    ;;
+  _theme) theme_icon ;;
+  help | -h | --help) usage ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac

@@ -1,0 +1,7 @@
+[Unit]
+Description=Google Drive health check (login, uploads, network)
+Documentation=file://%h/.local/share/omarchy-gdrive/README.md
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _check

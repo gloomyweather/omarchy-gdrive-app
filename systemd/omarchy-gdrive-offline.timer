@@ -1,0 +1,11 @@
+[Unit]
+Description=Google Drive offline folders sync every 15 minutes
+PartOf=graphical-session.target
+
+[Timer]
+OnActiveSec=3min
+OnUnitActiveSec=15min
+AccuracySec=1min
+
+[Install]
+WantedBy=graphical-session.target

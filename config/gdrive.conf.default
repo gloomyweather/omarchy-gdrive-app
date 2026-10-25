@@ -1,0 +1,69 @@
+# omarchy-gdrive settings.
+#
+# This file is read by bash: KEY=value, no spaces around "=".
+# Apply changes with:  omarchy-gdrive restart
+# Sizes: K, M, G (powers of 1024). Durations: s, m, h (168h = 7 days).
+
+# rclone remote name.
+REMOTE=gdrive
+
+# Folder with links to the drives (the Files bookmarks point here too).
+LINK_DIR="$HOME/GoogleDrive"
+
+# Hotkey that opens Google Drive (empty: no hotkey).
+# After a change run: omarchy-gdrive repair
+HOTKEY="SUPER + CTRL + G"
+
+# --- Cache (each mount has its own) -----------------------------------------
+# How much disk space one mount's cache may use. A soft limit: open files and
+# files that are not uploaded yet are never evicted.
+VFS_CACHE_MAX_SIZE=10G
+# How long a file stays cached after it was last used.
+VFS_CACHE_MAX_AGE=168h
+# The cache stops growing when free disk space drops below this.
+VFS_CACHE_MIN_FREE_SPACE=20G
+# Upload a file this long after it was closed.
+VFS_WRITE_BACK=5s
+
+# --- Folder listings ---------------------------------------------------------
+# How long folder listings are remembered. Changes in the cloud still arrive
+# through polling (POLL_INTERVAL), so a long time is safe.
+DIR_CACHE_TIME=72h
+# How often to ask Google for changes.
+POLL_INTERVAL=1m
+# Load the listings of all folders in the background after connecting, so
+# every folder opens without network. On very large drives this costs many
+# API requests at each connect: true / false.
+VFS_REFRESH=true
+
+# --- Network -----------------------------------------------------------------
+# Fewer retries: without network an unavailable file fails sooner (rclone waits
+# longer before each retry). More retries: more tolerant of Google hiccups.
+LOW_LEVEL_RETRIES=2
+CONTIMEOUT=15s
+TIMEOUT=2m
+
+# --- Google Docs, Sheets, Slides ---------------------------------------------
+# link.html: a document opens in the browser, in Google Docs.
+# docx,xlsx,pptx,svg: export to office files (edits do not go back!).
+EXPORT_FORMATS=link.html
+
+# --- Behaviour ---------------------------------------------------------------
+# false: Files does not move deleted files into a .Trash-1000 folder in the
+# cloud, it offers "Delete permanently" instead; rclone then moves the file to
+# the Google Drive trash, where it can be restored for 30 days.
+NAUTILUS_TRASH=false
+# Seconds to wait for pending uploads when disconnecting (if online).
+STOP_WAIT=60
+# Show a "Google Drive connected" notification.
+NOTIFY_CONNECTED=true
+# rclone log level in journalctl: ERROR, NOTICE, INFO, DEBUG.
+LOG_LEVEL=NOTICE
+# Extra rclone mount flags, space separated (advanced).
+EXTRA_FLAGS=""
+
+# --- Offline folders (rclone bisync) -----------------------------------------
+# Where offline copies live.
+OFFLINE_DIR="$HOME/GoogleDrive/Offline"
+# Stop a sync if it would delete more than this percent of the files.
+OFFLINE_MAX_DELETE=25

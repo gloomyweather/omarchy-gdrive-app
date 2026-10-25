@@ -1,0 +1,10 @@
+[Unit]
+Description=Google Drive offline folders sync (rclone bisync)
+Documentation=file://%h/.local/share/omarchy-gdrive/README.md
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _offline-sync
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=2h

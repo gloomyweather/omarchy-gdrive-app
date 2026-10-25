@@ -1,0 +1,27 @@
+[Desktop Entry]
+Type=Application
+Name=Google Drive
+GenericName=Cloud drive
+Comment=Open Google Drive in Files
+Exec=@BIN@ open
+Icon=omarchy-gdrive
+Terminal=false
+Categories=Utility;FileTools;
+Keywords=google;drive;gdrive;cloud;rclone;
+Actions=connect;disconnect;status;setup;
+
+[Desktop Action connect]
+Name=Connect
+Exec=@BIN@ connect
+
+[Desktop Action disconnect]
+Name=Disconnect
+Exec=@BIN@ disconnect
+
+[Desktop Action status]
+Name=Status
+Exec=omarchy-launch-floating-terminal-with-presentation "@BIN@ status"
+
+[Desktop Action setup]
+Name=Set up
+Exec=omarchy-launch-floating-terminal-with-presentation "@BIN@ setup"

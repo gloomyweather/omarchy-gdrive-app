@@ -1,0 +1,11 @@
+[Unit]
+Description=Google Drive health check every 2 minutes
+PartOf=graphical-session.target
+
+[Timer]
+OnActiveSec=1min
+OnUnitActiveSec=2min
+AccuracySec=15s
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,33 @@
+# Google Drive mount (instance = mount name, see ~/.config/omarchy-gdrive/mounts/).
+# Installed by omarchy-gdrive; edit settings in ~/.config/omarchy-gdrive/gdrive.conf.
+
+[Unit]
+Description=Google Drive (%i) via rclone
+Documentation=file://%h/.local/share/omarchy-gdrive/README.md
+PartOf=graphical-session.target
+After=graphical-session.target
+# After 5 failed starts in 5 minutes stop retrying (e.g. the login expired).
+StartLimitIntervalSec=300
+StartLimitBurst=5
+OnFailure=omarchy-gdrive-failed@%i.service
+
+[Service]
+Type=notify
+NotifyAccess=main
+# Waits for the network without a limit; the folder stays empty meanwhile.
+ExecStartPre=%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _prestart %i
+ExecStart=%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _mount %i
+ExecStartPost=-%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _started %i
+# Lets pending uploads finish (bounded), then: fusermount3 -uz.
+ExecStop=%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _stop %i
+ExecStopPost=-%h/.local/share/omarchy-gdrive/bin/omarchy-gdrive _poststop %i
+# rclone exits 143 on SIGTERM after a normal stop; that is not a failure.
+SuccessExitStatus=143 SIGTERM
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=infinity
+TimeoutStopSec=90
+Nice=5
+
+[Install]
+WantedBy=graphical-session.target

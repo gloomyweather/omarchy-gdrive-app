@@ -1,3 +1,6 @@
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/JetBrainsMono-Regular.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/JetBrainsMono-Bold.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/JetBrainsMono-Italic.woff2") format("woff2"); }
 :root {
   --ink: #000;
   --paper: #fff;
@@ -16,9 +19,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 main { max-width: 68ch; margin: 0 auto; padding: 72px 24px 96px; }
-header { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); margin-bottom: 56px; }
+header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); margin-bottom: 56px; }
 header a { text-decoration: none; }
-header nav a { margin-left: 18px; }
+header nav a + a { margin-left: 18px; }
+header .sep { color: var(--faint); margin: 0 1ch; }
 header nav a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
 h1 { font-size: 14px; font-weight: 700; margin: 0 0 6px; }
 h2 { font-size: 14px; font-weight: 700; margin: 48px 0 8px; }

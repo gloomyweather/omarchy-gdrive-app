@@ -4,12 +4,19 @@ google drive as a normal folder on [omarchy](https://omarchy.org/).
 open, edit and save your drive files from files, the terminal or any app.
 built on [rclone](https://rclone.org/).
 
+![google drive in files, with the right-click menu](.github/screenshot.png)
+
 - **files**: bookmarks for my drive, shared with me and your shared drives
 - **right-click**: open in google drive, copy link, make available offline
 - **bar**: a drive icon that shows connected, uploading, offline or error
 - **menu**: omarchy menu → google drive
 - **hotkey**: `super + ctrl + g` opens drive
 - **auto-connect** at login, waits for the network, finishes uploads at shutdown
+
+<p>
+  <img src=".github/menu.png" height="280" alt="omarchy menu, google drive">
+  <img src=".github/bar.png" height="120" alt="bar icon with the drive status">
+</p>
 
 ## install
 
